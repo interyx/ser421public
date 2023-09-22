@@ -32,8 +32,13 @@ public class BookController {
     }
 
     @QueryMapping
-    public  Book bookByISBN(@Argument("isbn") String isbn) {
+    public Book bookByISBN(@Argument("isbn") String isbn) {
         return bookRepository.getBookByISBN(isbn);
+    }
+
+    @QueryMapping
+    public List<Book> booksByAuthorId(@Argument("id") int id) {
+        return BookRepository.getBooksByAuthorId(id);
     }
 
     @MutationMapping

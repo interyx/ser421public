@@ -11,6 +11,12 @@ type Query {
 
     # Fetch a book by its ISBN (International Standard Book Number).
     bookByISBN(isbn: String): Book
+
+    # Fetch a list of books by author ID
+    booksByAuthorId(id: ID): [Book]
+
+    # Fetch a list of authors by last name
+    authorsByLastName(lastName: String): [Author]
 }
 
 # Represents a book in the system.
@@ -49,6 +55,15 @@ input AddAuthorInput {
     lastName: String
 }
 
+# Input type for changing author name by ID
+input ChangeAuthorName {
+    # The first name of the author.
+    firstName: String
+
+    # the author's ID to be changed
+    id: ID
+}
+
 # Input type for adding a new book.
 input AddBookInput {
     # The ISBN (International Standard Book Number) of the book.
@@ -73,6 +88,11 @@ type AddBookPayload {
     book: Book
 }
 
+type ChangeAuthorNamePayload {
+    # Author's previous name
+    firstName: String
+}
+
 # The root Mutation type defines the entry points for mutating data.
 type Mutation {
     # Add a new author to the system.
@@ -80,4 +100,6 @@ type Mutation {
 
     # Add a new book to the system.
     addBook(input: AddBookInput): AddBookPayload
+
+    updateAuthorNameById(input: ChangeAuthorName): ChangeAuthorNamePayload
 }

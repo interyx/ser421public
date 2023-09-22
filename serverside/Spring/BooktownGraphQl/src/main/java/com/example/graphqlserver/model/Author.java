@@ -7,7 +7,7 @@ import java.util.List;
 public class Author {
 
     private int id;
-    private final String firstName;
+    private String firstName;
 
     private List<Book> books = new ArrayList<>();
 
@@ -30,6 +30,10 @@ public class Author {
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public void setFirstName(String name) {
+        this.firstName = name;
     }
 
     public String getLastName() {

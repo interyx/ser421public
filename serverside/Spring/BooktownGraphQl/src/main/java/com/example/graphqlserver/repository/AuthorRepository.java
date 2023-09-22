@@ -34,6 +34,16 @@ public class AuthorRepository {
         return null;
     }
 
+    public ArrayList<Author> getAuthorsByLastName(String lastName) {
+        ArrayList<Author> results = new ArrayList<>();
+        for(Author author : dummyAuthors) {
+            if(author.getLastName().equals(lastName)) {
+                results.add(author);
+            }
+        }
+        return results;
+    }
+
     public Author save(String firstName, String lastName) {
         List<Book> book = new ArrayList<>();
         int nextId = dummyAuthors.isEmpty() ? 0 : dummyAuthors.get(dummyAuthors.size() - 1).getId() + 1;
