@@ -43,6 +43,11 @@ public class BookController {
         return BookRepository.getBooksByAuthorId(id);
     }
 
+    @QueryMapping
+    public List<Book> booksByAuthorFirstName(@Argument("firstName") String firstName) {
+        return bookRepository.getBooksByAuthorFirstName(firstName);
+    }
+
     @MutationMapping
     public AddBookPayload addBook(@Argument AddBookInput input) {
         Author author = authorRepository.getAuthorById(input.authorId());

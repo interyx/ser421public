@@ -1,5 +1,6 @@
 package com.example.graphqlserver.repository;
 
+import com.example.graphqlserver.model.Author;
 import com.example.graphqlserver.model.Book;
 import org.springframework.stereotype.Repository;
 
@@ -53,6 +54,22 @@ public class BookRepository {
         for (Book book : dummyBooks) {
             if (book.getAuthorId() == id) {
                 bookList.add(book);
+            }
+        }
+        return bookList;
+    }
+
+    public ArrayList<Book> getBooksByAuthorFirstName(String firstName) {
+        ArrayList<Author> authors = AuthorRepository.getAuthorsbyFirstName(firstName);
+        ArrayList<Book> bookList = new ArrayList<>();
+        for (Book book: dummyBooks) {
+            System.out.println("Book name: " + book.getTitle());
+            System.out.println("Book Author ID:" + book.getAuthorId());
+            for(Author author : authors) {
+                System.out.println("Author ID: " + author.getId());
+                if(author.getId() == book.getAuthorId()) {
+                    bookList.add(book);
+                }
             }
         }
         return bookList;

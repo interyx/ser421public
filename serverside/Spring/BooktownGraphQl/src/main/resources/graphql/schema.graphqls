@@ -17,6 +17,9 @@ type Query {
 
     # Fetch a list of authors by last name
     authorsByLastName(lastName: String): [Author]
+
+    # Fetch a list of all books that share an author's first name
+    booksByAuthorFirstName(firstName: String): [Book]
 }
 
 # Represents a book in the system.
@@ -109,7 +112,9 @@ type Mutation {
     # Add a new book to the system.
     addBook(input: AddBookInput): AddBookPayload
 
+    # change an author's first name by their author ID
     updateAuthorNameById(input: ChangeAuthorName): ChangeAuthorNamePayload
 
+    # delete a book by its ISBN
     deleteBookByISBN(input: DeleteBookIsbnInput): DeleteBookPayload
 }
