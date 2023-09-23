@@ -2,6 +2,8 @@ package com.example.graphqlserver.controller;
 
 import com.example.graphqlserver.dto.input.AddBookInput;
 import com.example.graphqlserver.dto.output.AddBookPayload;
+import com.example.graphqlserver.dto.output.DeleteBookPayload;
+import com.example.graphqlserver.dto.input.DeleteBookIsbnInput;
 import com.example.graphqlserver.model.Author;
 import com.example.graphqlserver.model.Book;
 import com.example.graphqlserver.repository.AuthorRepository;
@@ -51,5 +53,12 @@ public class BookController {
         author.getBooks().add(book);
         var out = new AddBookPayload(book);
         return out;
+    }
+
+    @MutationMapping
+    public DeleteBookPayload deleteBookByISBN(@Argument DeleteBookIsbnInput input) {
+        System.out.println("Deleting book with ISBN " + input.isbn());
+        String result = bookRepository.deleteBookByISBN(input.isbn());
+        return new DeleteBookPayload(result);
     }
 }

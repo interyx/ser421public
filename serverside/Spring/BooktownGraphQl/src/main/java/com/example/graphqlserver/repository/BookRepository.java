@@ -40,6 +40,14 @@ public class BookRepository {
         return newBook;
     }
 
+    public String deleteBookByISBN(String isbn) {
+        Book target = getBookByISBN(isbn);
+        if(dummyBooks.remove(target)) {
+            return isbn;
+        }
+        return null;
+    }
+
     public static ArrayList<Book> getBooksByAuthorId(int id) {
         ArrayList<Book> bookList = new ArrayList<>();
         for (Book book : dummyBooks) {
