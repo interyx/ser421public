@@ -1,15 +1,22 @@
 package com.example.graphqlserver.model;
-
-
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Author {
 
+    @Id
     private int id;
+
+    @Column(name="firstName")
     private final String firstName;
 
-    private List<Book> books = new ArrayList<>();
+    @Column(name="lastName")
+    private final String lastName;
+
+    @Column(name="books")
+    private List<Book> books;
 
     public Author(int id, String firstName, String lastName, List<Book> books) {
         this.id = id;
@@ -18,7 +25,6 @@ public class Author {
         this.books = books;
     }
 
-    private final String lastName;
 
     public int getId() {
         return id;

@@ -1,15 +1,20 @@
 package com.example.graphqlserver.model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Book {
+    @Id
     private String isbn;
+
     private String title;
 
-    private int authorId;
+    private int authorNum;
 
-    public Book(String isbn, String title, int authorId) {
+    public Book(String isbn, String title, int authorNum) {
         this.isbn = isbn;
         this.title = title;
-        this.authorId = authorId;
+        this.authorNum = authorNum;
     }
 
     public String getIsbn() {
@@ -28,11 +33,11 @@ public class Book {
         this.title = title;
     }
 
-    public int getAuthorId() {
-        return authorId;
+    public int getAuthorNum() {
+        return authorNum;
     }
 
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
+    public void setAuthorNum(int authorNum) {
+        this.authorNum = authorNum;
     }
 }
